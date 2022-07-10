@@ -79,13 +79,15 @@ sup {
 
 #formula {
     flex: 1 1 auto;
-    font-size: 30px;
+    font-size: 20px;
+    align-items: center;
     visibility: hidden;
 }
 
 #currentscreen {
-    flex: 2 0 auto;
-    font-size: 70px;
+    flex: 2 1 auto;
+    align-items: center;
+    font-size: 40px;
 }
 
 
@@ -106,5 +108,6 @@ sup {
     flex-flow: row nowrap;
     justify-content: flex-end;
     font-family: Arial;
-    margin-right: 15px;
+    margin-top: 25px;
+    margin-right: 10px;
 }
