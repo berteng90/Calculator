@@ -1,0 +1,84 @@
+@font-face {
+    font-family: 'Bottleparty';
+    src: url(./fonts/bottle\ party\ DEMO.otf);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Bottleparty';
+}
+
+#header {
+    display: flex;
+    width: auto;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-size: 50px;
+    color: #343434;
+}
+
+#calculator {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 425px;
+    height: 550px;
+    justify-content: center;
+    align-items: center;
+    background-color: #343434;
+    border-radius: 1%;
+    margin: auto;
+}
+
+img {
+    width: 35px;
+    height: 35px;
+}
+
+button {
+    width: 90px;
+    height: 70px;
+    margin: 0;
+    padding: 0;
+    font-size: 40px;
+    font-weight: 300;
+    background-color: #FFAC1C;
+}
+
+#arithmetic button+#Add {
+    flex: 1;
+}
+
+
+
+#screen {
+    border-style: solid;
+    width: 357px;
+    height: 130px;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+#buttons {
+    display: flex;
+    flex-flow: row nowrap;
+    width: auto;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+/* Repeating Values */
+#arithmetic,
+#col1,
+#col2,
+#col3 {
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 0;
+    padding: 0;
+}
