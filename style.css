@@ -54,6 +54,8 @@ button {
 
 
 #screen {
+    display: flex;
+    flex-flow: column wrap;
     border-style: solid;
     width: 357px;
     height: 130px;
@@ -75,6 +77,18 @@ sup {
     font-size: 25px;
 }
 
+#formula {
+    flex: 1 1 auto;
+    font-size: 30px;
+    visibility: hidden;
+}
+
+#currentscreen {
+    flex: 2 0 auto;
+    font-size: 70px;
+}
+
+
 /* Repeating Values */
 #arithmetic,
 #col1,
@@ -84,4 +98,13 @@ sup {
     flex-flow: column nowrap;
     margin: 0;
     padding: 0;
+}
+
+#formula,
+#currentscreen {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    font-family: Arial;
+    margin-right: 15px;
 }
