@@ -18,44 +18,19 @@ function appendNumber() {
         else {
             currentScreen.textContent += button.textContent
         }
-        num1 = +currentScreen.textContent
+        num1 = currentScreen.textContent
         console.log(num1)
     }))
-
 }
 
-function arithmetic() {
-    const button = document.querySelectorAll('#arithfunc')
+function operate() {
+    const button = document.querySelectorAll('#arith')
     button.forEach(button => button.addEventListener('click', () => {
-        if (currentScreen.textContent === '0') {
-            formula.textContent = 0 + button.textContent
-            formula.style.visibility = 'visible';
-            operation = true
-
-        } else if (formula.textContent === '0' && button.textContent === '-') {
-            formula.textContent = button.textContent + currentScreen.textContent + button.textContent
-            formula.style.visibility = 'visible';
-        }
-        else {
-            if (formula.textContent === '0') {
-                operation = true
-                formula.textContent = num1 + button.textContent
-                formula.style.visibility = 'visible';
-            } else {
-                operation = true
-                formula.textContent += num1 + button.textContent
-                formula.style.visibility = 'visible';
-            }
-            if (button.textContent === '+' && formula.textContent !== '0') {
-
-            } else if (button.textContent === '-') {
-                num1 - num2
-            } else if (button.textContent === '/') {
-                num1 / num2
-            } else if (button.textContent === '*') {
-                num1 * num2
-            }
-        }
+        console.log('This is a Test')
+        formula.textContent = num1 + button.textContent
+        num1 = 0
+        currentScreen.textContent = formula
+        operation = true
     }))
 }
 

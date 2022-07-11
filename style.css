@@ -47,7 +47,7 @@ button {
     background-color: #FFAC1C;
 }
 
-#arithmetic button+#Add {
+#arith#add {
     flex: 1;
 }
 
