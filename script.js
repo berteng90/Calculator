@@ -4,7 +4,6 @@ let operation = false;
 let num1 = null
 let num2 = null
 
-
 //Append Number to Screen as a String
 function appendNumber() {
     const button = document.querySelectorAll('#number')
@@ -25,12 +24,34 @@ function appendNumber() {
 function operate() {
     const button = document.querySelectorAll('#arithmetic>button')
     button.forEach(button => button.addEventListener('click', () => {
-        formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g, '')) + num1 + button.textContent
         formula.style.visibility = 'visible'
-        num1 = 0
-        currentScreen.textContent = formula.textContent.replace(/[/+*-]/g, '')
         operation = true
+        if (button.id === 'add') {
+
+            formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g, '')) + num1 + button.textContent
+        }
+        else if (button.id === 'subtract' && formula.textContent === '0') {
+            formula.textContent = num1 + button.textContent
+        } else if (button.id === 'subtract' && formula.textContent !== '0') {
+            formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g), '') - num1 + button.textContent
+        }
+        else if (button.id === 'divide' && formula.textContent === '0') {
+            formula.textContent = num1 + button.textContent
+        } else if (button.id === 'divide' && formula.textContent !== '0') {
+            formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g), '') / num1 + button.textContent
+        }
+        else if (button.id === 'multiply' && formula.textContent === '0') {
+            formula.textContent = num1 + button.textContent
+        } else if (button === 'multiply' && formula.textContent !== '0') {
+            formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g), '') * num1 + button.textContent
+        }
+
+        currentScreen.textContent = formula.textContent.replace(/[/+*-]/g, '')
+
     }))
+
+
+
 }
 
 function clearScreen() {
