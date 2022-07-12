@@ -8,7 +8,6 @@ let num2 = null
 //Append Number to Screen as a String
 function appendNumber() {
     const button = document.querySelectorAll('#number')
-    console.log(button)
     button.forEach(button => button.addEventListener('click', () => {
         if (currentScreen.textContent === '0' && operation === false) {
             currentScreen.textContent = button.textContent
@@ -19,18 +18,17 @@ function appendNumber() {
         else {
             currentScreen.textContent += button.textContent
         }
-        num1 = currentScreen.textContent
-        console.log(num1)
+        num1 = parseInt(currentScreen.textContent)
     }))
 }
 
 function operate() {
     const button = document.querySelectorAll('#arithmetic>button')
-    console.log(button)
     button.forEach(button => button.addEventListener('click', () => {
-        formula.textContent = num1 + button.textContent
+        formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g, '')) + num1 + button.textContent
+        formula.style.visibility = 'visible'
         num1 = 0
-        currentScreen.textContent = formula
+        currentScreen.textContent = formula.textContent.replace(/[/+*-]/g, '')
         operation = true
     }))
 }
