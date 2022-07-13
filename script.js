@@ -32,12 +32,11 @@ function operate() {
             arithmetic(button)
         } else if (equalOp === true) {
             num1 = parseInt(currentScreen.textContent)
+            console.log(num1)
             formula.textContent = '0'
             arithmetic(button)
         }
     }))
-
-
 }
 
 function clearScreen() {
@@ -50,7 +49,7 @@ function backspace() {
 }
 
 function arithmetic(button) {
-
+    num2 = parseInt(currentScreen.textContent.replace(/[÷+*-]/g), '')
     if (button.id === 'add') {
         formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g, '')) + num1 + button.textContent
     }
@@ -76,21 +75,18 @@ function arithmetic(button) {
 
 function equal(button) {
     equals.addEventListener('click', () => {
-        num2 = parseInt(formula.textContent.replace(/[÷+*-]/g), '')
-        console.log(num2)
         formula.textContent = num2 + button.textContent +
-            currentScreen.textContent + '='
+            num1 + '='
         if (button.id === 'add') {
-            currentScreen.textContent = num2 + parseInt(currentScreen.textContent)
+            currentScreen.textContent = num2 + num1
         } else if (button.id === 'subtract') {
-            currentScreen.textContent = num2 - parseInt(currentScreen.textContent)
+            currentScreen.textContent = num2 - num1
         } else if (button.id === 'divide') {
-            currentScreen.textContent = num2 / parseInt(currentScreen.textContent)
+            currentScreen.textContent = num2 / num1
         } else if (button.id === 'multiply') {
-            currentScreen.textContent = num2 * parseInt(currentScreen.textContent)
+            currentScreen.textContent = num2 * num1
         }
         equalOp = true;
     })
-
 }
 
