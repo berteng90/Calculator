@@ -1,18 +1,29 @@
 const currentScreen = document.getElementById('currentscreen');
 const formula = document.getElementById('formula');
 const equals = document.getElementById('equals');
+const numpadNum = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
+const numpadChar = ['NumpadAdd']
 let operation = false;
 let equalOp = false;
 let num1 = null
 let num2 = null
 let clicked = 0
 
+
+//Keydown Event
 function keyboardSupport() {
     window.addEventListener('keydown', (e) => {
-        appendNumber(e.key)
+        if (e.key in numpadNum || e.code in numpadChar) {
+            appendNumber(e.key)
+
+        } else {
+        }
+
     })
+
 }
 
+//Button Press Event
 function buttonPress() {
     const button = document.querySelectorAll('#number')
     button.forEach(button => button.addEventListener('click', () => {
