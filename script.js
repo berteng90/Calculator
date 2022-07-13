@@ -14,43 +14,16 @@ function appendNumber() {
     const button = document.querySelectorAll('#number')
     button.forEach(button => button.addEventListener('click', () => {
 
-        if (clicked !== 3) {
-            if (currentScreen.textContent === '0' && operation === false) {
-                currentScreen.textContent = button.textContent
-                clicked++;
-                console.log(clicked)
-            } else if (operation === true) {
-                currentScreen.textContent = button.textContent
-                operation = false
-                clicked++;
-                console.log(clicked)
-            }
-            else {
-                currentScreen.textContent += button.textContent
-                clicked += 1;
-                console.log(clicked)
-            }
-            num1 = parseInt(currentScreen.textContent)
-        } else {
-            if (currentScreen.textContent === '0' && operation === false) {
-                currentScreen.textContent = button.textContent
-
-            } else if (operation === true) {
-                currentScreen.textContent = button.textContent
-                operation = false
-            }
-            else if (clicked === 3) {
-                currentScreen.textContent += button.textContent
-                let num = currentScreen.textContent.split('.')
-                num[0] = num[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-                num.join('.')
-                newnum = num.toString()
-                currentScreen.textContent = newnum
-            }
-            num1 = newnum
-            console.log(parseInt(num1))
-            clicked = 1
+        if (currentScreen.textContent === '0' && operation === false) {
+            currentScreen.textContent = button.textContent
+        } else if (operation === true) {
+            currentScreen.textContent = button.textContent
+            operation = false
         }
+        else {
+            currentScreen.textContent += button.textContent
+        }
+        num1 = parseInt(currentScreen.textContent)
 
     }))
 }
@@ -87,9 +60,10 @@ function backspace() {
 }
 
 function arithmetic(button) {
+    console.log(currentScreen.textContent)
     num2 = parseInt(currentScreen.textContent.replace(/[÷+*-]/g), '')
     if (button.id === 'add') {
-        formula.textContent = parseInt(formula.textContent.replace(/[,÷+*-]/g, '')) + num1 + button.textContent
+        formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g, '')) + num1 + button.textContent
     }
     else if (button.id === 'subtract' && formula.textContent === '0') {
         formula.textContent = num1 + button.textContent
