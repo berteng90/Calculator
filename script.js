@@ -13,28 +13,30 @@ function keyboardSupport() {
     })
 }
 
+function buttonPress() {
+    const button = document.querySelectorAll('#number')
+    button.forEach(button => button.addEventListener('click', () => {
+        appendNumber(button.textContent)
+    }))
+}
+
 
 
 
 //Append Number to Screen as a String
 function appendNumber(key) {
     console.log(key)
-    const button = document.querySelectorAll('#number')
-    button.forEach(button => button.addEventListener('click', () => {
+    if (currentScreen.textContent === '0' && operation === false) {
+        currentScreen.textContent = parseInt(key)
+    } else if (operation === true) {
+        currentScreen.textContent = parseInt(key)
+        operation = false
+    }
+    else {
+        currentScreen.textContent += parseInt(key)
+    }
+    num1 = parseInt(currentScreen.textContent)
 
-        button.textContent = key
-        if (currentScreen.textContent === '0' && operation === false) {
-            currentScreen.textContent = button.textContent
-        } else if (operation === true) {
-            currentScreen.textContent = button.textContent
-            operation = false
-        }
-        else {
-            currentScreen.textContent += button.textContent
-        }
-        num1 = parseInt(currentScreen.textContent)
-
-    }))
 }
 
 function operate() {
