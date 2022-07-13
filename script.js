@@ -7,13 +7,22 @@ let num1 = null
 let num2 = null
 let clicked = 0
 
+function keyboardSupport() {
+    window.addEventListener('keydown', (e) => {
+        appendNumber(e.key)
+    })
+}
+
+
 
 
 //Append Number to Screen as a String
-function appendNumber() {
+function appendNumber(key) {
+    console.log(key)
     const button = document.querySelectorAll('#number')
     button.forEach(button => button.addEventListener('click', () => {
 
+        button.textContent = key
         if (currentScreen.textContent === '0' && operation === false) {
             currentScreen.textContent = button.textContent
         } else if (operation === true) {
