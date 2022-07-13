@@ -5,21 +5,53 @@ let operation = false;
 let equalOp = false;
 let num1 = null
 let num2 = null
+let clicked = 0
+
+
 
 //Append Number to Screen as a String
 function appendNumber() {
     const button = document.querySelectorAll('#number')
     button.forEach(button => button.addEventListener('click', () => {
-        if (currentScreen.textContent === '0' && operation === false) {
-            currentScreen.textContent = button.textContent
-        } else if (operation === true) {
-            currentScreen.textContent = button.textContent
-            operation = false
+
+        if (clicked !== 3) {
+            if (currentScreen.textContent === '0' && operation === false) {
+                currentScreen.textContent = button.textContent
+                clicked++;
+                console.log(clicked)
+            } else if (operation === true) {
+                currentScreen.textContent = button.textContent
+                operation = false
+                clicked++;
+                console.log(clicked)
+            }
+            else {
+                currentScreen.textContent += button.textContent
+                clicked += 1;
+                console.log(clicked)
+            }
+            num1 = parseInt(currentScreen.textContent)
+        } else {
+            if (currentScreen.textContent === '0' && operation === false) {
+                currentScreen.textContent = button.textContent
+
+            } else if (operation === true) {
+                currentScreen.textContent = button.textContent
+                operation = false
+            }
+            else if (clicked === 3) {
+                currentScreen.textContent += button.textContent
+                let num = currentScreen.textContent.split('.')
+                num[0] = num[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+                num.join('.')
+                newnum = num.toString()
+                currentScreen.textContent = newnum
+            }
+            num1 = newnum
+            console.log(parseInt(num1))
+            clicked = 1
         }
-        else {
-            currentScreen.textContent += button.textContent
-        }
-        num1 = parseInt(currentScreen.textContent)
+
     }))
 }
 
@@ -46,12 +78,18 @@ function clearScreen() {
 }
 
 function backspace() {
+    if (currentScreen.textContent.length = 1) {
+        currentScreen.textContent = currentScreen.textContent.slice(0, -1)
+    }
+    else {
+        currentScreen.textContent = '0'
+    }
 }
 
 function arithmetic(button) {
     num2 = parseInt(currentScreen.textContent.replace(/[÷+*-]/g), '')
     if (button.id === 'add') {
-        formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g, '')) + num1 + button.textContent
+        formula.textContent = parseInt(formula.textContent.replace(/[,÷+*-]/g, '')) + num1 + button.textContent
     }
     else if (button.id === 'subtract' && formula.textContent === '0') {
         formula.textContent = num1 + button.textContent
