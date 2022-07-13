@@ -1,6 +1,8 @@
 const currentScreen = document.getElementById('currentscreen');
 const formula = document.getElementById('formula');
+const equals = document.getElementById('equals');
 let operation = false;
+let equalOp = false;
 let num1 = null
 let num2 = null
 
@@ -27,7 +29,6 @@ function operate() {
         formula.style.visibility = 'visible'
         operation = true
         if (button.id === 'add') {
-
             formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g, '')) + num1 + button.textContent
         }
         else if (button.id === 'subtract' && formula.textContent === '0') {
@@ -45,12 +46,17 @@ function operate() {
         } else if (button === 'multiply' && formula.textContent !== '0') {
             formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g), '') * num1 + button.textContent
         }
-
         currentScreen.textContent = formula.textContent.replace(/[/+*-]/g, '')
-
+        num1 = 0
     }))
 
-
+    equals.addEventListener('click', () => {
+        num2 = parseInt(formula.textContent.replace(/[/+*-]/g), '')
+        console.log(num2)
+        formula.textContent = formula.textContent +
+            currentScreen.textContent + '='
+        currentScreen.textContent = num2 + parseInt(currentScreen.textContent)
+    })
 
 }
 
