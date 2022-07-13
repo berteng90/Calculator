@@ -49,7 +49,7 @@ function appendNumber(key) {
     num1 = parseInt(currentScreen.textContent)
 
 }
-
+//Perform Arithmetic Operation
 function operate() {
     const button = document.querySelectorAll('#arithmetic>button')
     button.forEach(button => button.addEventListener('click', () => {
@@ -66,12 +66,16 @@ function operate() {
     }))
 }
 
+
+//Resets Calculator
 function clearScreen() {
     currentScreen.textContent = '0'
     formula.textContent = '0'
     formula.style.visibility = 'hidden'
 }
 
+
+//Removes a single number(BackSpace)
 function backspace() {
     if (currentScreen.textContent.length = 1) {
         currentScreen.textContent = currentScreen.textContent.slice(0, -1)
