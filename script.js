@@ -31,7 +31,6 @@ function operate() {
         if (equalOp === false) {
             arithmetic(button)
         } else if (equalOp === true) {
-            console.log('This is a Test')
             num1 = parseInt(currentScreen.textContent)
             formula.textContent = '0'
             arithmetic(button)
@@ -53,37 +52,44 @@ function backspace() {
 function arithmetic(button) {
 
     if (button.id === 'add') {
-        formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g, '')) + num1 + button.textContent
+        formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g, '')) + num1 + button.textContent
     }
     else if (button.id === 'subtract' && formula.textContent === '0') {
         formula.textContent = num1 + button.textContent
     } else if (button.id === 'subtract' && formula.textContent !== '0') {
-        formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g), '') - num1 + button.textContent
+        formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g), '') - num1 + button.textContent
     }
     else if (button.id === 'divide' && formula.textContent === '0') {
         formula.textContent = num1 + button.textContent
     } else if (button.id === 'divide' && formula.textContent !== '0') {
-        formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g), '') / num1 + button.textContent
+        formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g), '') / num1 + button.textContent
     }
     else if (button.id === 'multiply' && formula.textContent === '0') {
         formula.textContent = num1 + button.textContent
     } else if (button === 'multiply' && formula.textContent !== '0') {
-        formula.textContent = parseInt(formula.textContent.replace(/[/+*-]/g), '') * num1 + button.textContent
+        formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g), '') * num1 + button.textContent
     }
-    currentScreen.textContent = formula.textContent.replace(/[/+*-]/g, '')
+    currentScreen.textContent = formula.textContent.replace(/[÷+*-]/g, '')
     num1 = 0
-
-
-
+    equal(button)
 }
-function equal() {
+
+function equal(button) {
     equals.addEventListener('click', () => {
-        num2 = parseInt(formula.textContent.replace(/[/+*-]/g), '')
-        formula.textContent = formula.textContent +
+        num2 = parseInt(formula.textContent.replace(/[÷+*-]/g), '')
+        console.log(num2)
+        formula.textContent = num2 + button.textContent +
             currentScreen.textContent + '='
-        currentScreen.textContent = num2 + parseInt(currentScreen.textContent)
+        if (button.id === 'add') {
+            currentScreen.textContent = num2 + parseInt(currentScreen.textContent)
+        } else if (button.id === 'subtract') {
+            currentScreen.textContent = num2 - parseInt(currentScreen.textContent)
+        } else if (button.id === 'divide') {
+            currentScreen.textContent = num2 / parseInt(currentScreen.textContent)
+        } else if (button.id === 'multiply') {
+            currentScreen.textContent = num2 * parseInt(currentScreen.textContent)
+        }
         equalOp = true;
-        console.log(equalOp)
     })
 
 }
