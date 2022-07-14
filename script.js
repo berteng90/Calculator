@@ -17,9 +17,7 @@ function keyboardSupport() {
             appendNumber(e.key)
         } else {
         }
-
     })
-
 }
 
 //Button Press Event
@@ -30,7 +28,9 @@ function buttonPress() {
     }))
 }
 
-
+function addDot(dot) {
+    console.log(dot)
+}
 
 
 //Append Number to Screen as a String
@@ -41,6 +41,12 @@ function appendNumber(key, button) {
         } else if (operation === true) {
             currentScreen.textContent = parseInt(key)
             operation = false
+        }
+        else if (equalOp === true && operation === false) {
+            currentScreen.textContent = parseInt(key)
+            formula.textContent = '0'
+            formula.style.visibility = 'hidden'
+            equalOp = false
         }
         else {
             currentScreen.textContent += parseInt(key)
@@ -91,6 +97,7 @@ function backspace() {
 //Compute 2 Numbers based on the Operation Clicked
 function arithmetic(button) {
     console.log(currentScreen.textContent)
+    equalOp = false
     num2 = parseInt(currentScreen.textContent.replace(/[÷+*-]/g), '')
     if (button.id === 'add') {
         formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g, '')) + num1 + button.textContent
@@ -115,6 +122,7 @@ function arithmetic(button) {
     equal(button)
 }
 
+//Compute Num1 & Num2
 function equal(button) {
     equals.addEventListener('click', () => {
         formula.textContent = num2 + button.textContent +
