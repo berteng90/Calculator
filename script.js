@@ -2,7 +2,6 @@ const currentScreen = document.getElementById('currentscreen');
 const formula = document.getElementById('formula');
 const equals = document.getElementById('equals');
 const numpadNum = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
-const numpadChar = ['NumpadAdd']
 let operation = false;
 let equalOp = false;
 let num1 = null
@@ -10,12 +9,12 @@ let num2 = null
 let clicked = 0
 
 
+
 //Keydown Event
 function keyboardSupport() {
     window.addEventListener('keydown', (e) => {
-        if (e.key in numpadNum || e.code in numpadChar) {
+        if (e.key in numpadNum) {
             appendNumber(e.key)
-
         } else {
         }
 
@@ -27,7 +26,7 @@ function keyboardSupport() {
 function buttonPress() {
     const button = document.querySelectorAll('#number')
     button.forEach(button => button.addEventListener('click', () => {
-        appendNumber(button.textContent)
+        appendNumber(button.textContent, button)
     }))
 }
 
@@ -35,18 +34,21 @@ function buttonPress() {
 
 
 //Append Number to Screen as a String
-function appendNumber(key) {
-    console.log(key)
-    if (currentScreen.textContent === '0' && operation === false) {
-        currentScreen.textContent = parseInt(key)
-    } else if (operation === true) {
-        currentScreen.textContent = parseInt(key)
-        operation = false
+function appendNumber(key, button) {
+    if (currentScreen.textContent.length !== 15) {
+        if (currentScreen.textContent === '0' && operation === false) {
+            currentScreen.textContent = parseInt(key)
+        } else if (operation === true) {
+            currentScreen.textContent = parseInt(key)
+            operation = false
+        }
+        else {
+            currentScreen.textContent += parseInt(key)
+        }
+        num1 = parseInt(currentScreen.textContent)
+    } else {
+
     }
-    else {
-        currentScreen.textContent += parseInt(key)
-    }
-    num1 = parseInt(currentScreen.textContent)
 
 }
 //Perform Arithmetic Operation
@@ -79,12 +81,14 @@ function clearScreen() {
 function backspace() {
     if (currentScreen.textContent.length = 1) {
         currentScreen.textContent = currentScreen.textContent.slice(0, -1)
+        num1 = parseInt(currentScreen.textContent)
     }
     else {
         currentScreen.textContent = '0'
     }
 }
 
+//Compute 2 Numbers based on the Operation Clicked
 function arithmetic(button) {
     console.log(currentScreen.textContent)
     num2 = parseInt(currentScreen.textContent.replace(/[÷+*-]/g), '')
