@@ -73,8 +73,15 @@ button {
     padding: 0;
 }
 
+
 sup {
-    font-size: 25px;
+    font-style: italic;
+    font-size: 20px;
+}
+
+sub {
+    font-style: italic;
+    font-size: 35px;
 }
 
 #formula {
