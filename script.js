@@ -7,6 +7,7 @@ let equalOp = false;
 let num1 = null
 let num2 = null
 let clicked = 0
+let decimal = false;
 
 
 
@@ -29,7 +30,10 @@ function buttonPress() {
 }
 
 function addDot(dot) {
-    console.log(dot)
+    if (decimal === false) {
+        currentScreen.textContent += '.'
+        decimal = true
+    }
 }
 
 
@@ -37,21 +41,21 @@ function addDot(dot) {
 function appendNumber(key, button) {
     if (currentScreen.textContent.length !== 15) {
         if (currentScreen.textContent === '0' && operation === false) {
-            currentScreen.textContent = parseInt(key)
+            currentScreen.textContent = parseFloat(key)
         } else if (operation === true) {
-            currentScreen.textContent = parseInt(key)
+            currentScreen.textContent = parseFloat(key)
             operation = false
         }
         else if (equalOp === true && operation === false) {
-            currentScreen.textContent = parseInt(key)
+            currentScreen.textContent = parseFloat(key)
             formula.textContent = '0'
             formula.style.visibility = 'hidden'
             equalOp = false
         }
         else {
-            currentScreen.textContent += parseInt(key)
+            currentScreen.textContent += parseFloat(key)
         }
-        num1 = parseInt(currentScreen.textContent)
+        num1 = parseFloat(currentScreen.textContent)
     } else {
 
     }
@@ -66,7 +70,7 @@ function operate() {
         if (equalOp === false) {
             arithmetic(button)
         } else if (equalOp === true) {
-            num1 = parseInt(currentScreen.textContent)
+            num1 = parseFloat(currentScreen.textContent)
             console.log(num1)
             formula.textContent = '0'
             arithmetic(button)
@@ -87,7 +91,7 @@ function clearScreen() {
 function backspace() {
     if (currentScreen.textContent.length = 1) {
         currentScreen.textContent = currentScreen.textContent.slice(0, -1)
-        num1 = parseInt(currentScreen.textContent)
+        num1 = parseFloat(currentScreen.textContent)
     }
     else {
         currentScreen.textContent = '0'
@@ -98,24 +102,24 @@ function backspace() {
 function arithmetic(button) {
     console.log(currentScreen.textContent)
     equalOp = false
-    num2 = parseInt(currentScreen.textContent.replace(/[÷+*-]/g), '')
+    num2 = parseFloat(currentScreen.textContent.replace(/[÷+*-]/g), '')
     if (button.id === 'add') {
-        formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g, '')) + num1 + button.textContent
+        formula.textContent = parseFloat(formula.textContent.replace(/[÷+*-]/g, '')) + num1 + button.textContent
     }
     else if (button.id === 'subtract' && formula.textContent === '0') {
         formula.textContent = num1 + button.textContent
     } else if (button.id === 'subtract' && formula.textContent !== '0') {
-        formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g), '') - num1 + button.textContent
+        formula.textContent = parseFloat(formula.textContent.replace(/[÷+*-]/g), '') - num1 + button.textContent
     }
     else if (button.id === 'divide' && formula.textContent === '0') {
         formula.textContent = num1 + button.textContent
     } else if (button.id === 'divide' && formula.textContent !== '0') {
-        formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g), '') / num1 + button.textContent
+        formula.textContent = parseFloat(formula.textContent.replace(/[÷+*-]/g), '') / num1 + button.textContent
     }
     else if (button.id === 'multiply' && formula.textContent === '0') {
         formula.textContent = num1 + button.textContent
     } else if (button === 'multiply' && formula.textContent !== '0') {
-        formula.textContent = parseInt(formula.textContent.replace(/[÷+*-]/g), '') * num1 + button.textContent
+        formula.textContent = parseFloat(formula.textContent.replace(/[÷+*-]/g), '') * num1 + button.textContent
     }
     currentScreen.textContent = formula.textContent.replace(/[÷+*-]/g, '')
     num1 = 0
@@ -132,7 +136,7 @@ function equal(button) {
         } else if (button.id === 'subtract') {
             currentScreen.textContent = num2 - num1
         } else if (button.id === 'divide') {
-            currentScreen.textContent = num2 / num1
+            currentScreen.textContent = (num2 / num1)
         } else if (button.id === 'multiply') {
             currentScreen.textContent = num2 * num1
         }
@@ -140,3 +144,11 @@ function equal(button) {
     })
 }
 
+function truncate() {
+    let str = '123456789123456789123456'
+    while (str.length !== 15) {
+        str.slice(0, -1)
+        console.log(str)
+    }
+}
+truncate();
