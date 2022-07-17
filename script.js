@@ -5,9 +5,10 @@ const numpadNum = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0']
 const operand = { add: '+', subtract: '-', divide: '/', multiply: '*' }
 let operation = 1;
 let equalOp = false;
-let num1 = null
-let num2 = null
-let clicked = 0
+let operandChain = 0;
+let num1 = null;
+let num2 = null;
+let clicked = 0;
 let decimal = false;
 
 
@@ -30,6 +31,7 @@ function buttonPress() {
     }))
 }
 
+//add Decimal Points
 function addDot(dot) {
     if (decimal === false) {
         currentScreen.textContent += '.'
@@ -68,11 +70,27 @@ function operate() {
     button.forEach(button => button.addEventListener('click', () => {
         formula.style.visibility = 'visible'
         operation++;
+        operandChain++;
         if (equalOp === false) {
             arithmetic(button)
-        } else if (equalOp === true) {
+        } else if (operandChain > 1) {
+            if (operand[`${button.id}`] === 'add') {
+                formula.textContent = parseFloat(formula.textContent.replace(/[÷+x-]/g, '')) + num1 + button.textContent
+
+            } else if (operand[`${button.id}`] === 'subtract') {
+
+            } else if (operand[`${button.id}`] === 'divide') {
+
+            } else if (operand[`${button.id}`] === 'multiply') {
+
+            }
+
+
+        }
+        else if (equalOp === true) {
             num1 = parseFloat(currentScreen.textContent)
             formula.textContent = '0'
+            operandChain = 0
             arithmetic(button)
         }
     }))
